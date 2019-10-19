@@ -6,8 +6,9 @@ import Main from "./main/Main";
 
 const MainWrapper = styled.div`
   padding: 0 40px;
-  background-color: #dfcfbe;
+  background-color: #efebe9;
   height: 100vh;
+  padding-top: 10px;
 `;
 
 const App = () => {
