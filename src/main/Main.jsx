@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Card, Input, Select, Button } from "antd";
+import { Card, Input, Select, Button, Typography } from "antd";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -34,24 +34,43 @@ const ContentBoxWrapper = styled.div`
 `;
 
 const Main = () => {
+  const [state, setState] = useState([]);
+
+  console.log(state);
+
+  const onChange = value => setState(value);
+
   return (
     <MainWrapper>
       <div className="read">
         <ContentBoxWrapper>
           <Card title="Read" style={{ width: 300 }} bordered={false}>
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
+            {state.map((e, key) => (
+              <Typography.Paragraph key={key}>{e}</Typography.Paragraph>
+            ))}
           </Card>
         </ContentBoxWrapper>
       </div>
       <div className="add">
-        <Input placeholder="Basic usage" size="large" />
+        <Input
+          placeholder="Basic usage"
+          size="large"
+          value={state}
+          onChange={onChange}
+        />
         <Select defaultValue="read" style={{ width: "100%" }} size="large">
           <Select.Option value="read">Read</Select.Option>
           <Select.Option value="end">End</Select.Option>
         </Select>
-        <Button type="primary" style={{ width: "100%" }} size="large">
+        <Button
+          type="primary"
+          style={{ width: "100%" }}
+          size="large"
+          onClick={() => {
+            state.push("1");
+            setState(state);
+          }}
+        >
           Add
         </Button>
       </div>
