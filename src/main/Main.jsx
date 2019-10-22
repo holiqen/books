@@ -34,16 +34,22 @@ const ContentBoxWrapper = styled.div`
 `;
 
 const Main = () => {
-  const [state, setState] = useState([]);
+  const [read, setRead] = useState([]);
+  const [end, setEnd] = useState([]);
   const [book, setBook] = useState([]);
+  const [selectValue, setSelectValue] = useState();
   const onChange = e => setBook(e.target.value);
+
+  const handleChange = value => {
+    setSelectValue(value);
+  };
 
   return (
     <MainWrapper>
       <div className="read">
         <ContentBoxWrapper>
           <Card title="Read" style={{ width: 300 }} bordered={false}>
-            {state.map((e, key) => (
+            {read.map((e, key) => (
               <Typography.Paragraph key={key}>{e}</Typography.Paragraph>
             ))}
           </Card>
@@ -56,7 +62,12 @@ const Main = () => {
           value={book}
           onChange={onChange}
         />
-        <Select defaultValue="read" style={{ width: "100%" }} size="large">
+        <Select
+          defaultValue="read"
+          style={{ width: "100%" }}
+          size="large"
+          onChange={handleChange}
+        >
           <Select.Option value="read">Read</Select.Option>
           <Select.Option value="end">End</Select.Option>
         </Select>
@@ -64,9 +75,17 @@ const Main = () => {
           type="primary"
           style={{ width: "100%" }}
           size="large"
-          onClick={() => {
-            setState(state.concat(book));
-          }}
+          onClick={
+            selectValue === "end"
+              ? () => {
+                  setEnd(end.concat(book));
+                  setBook([]);
+                }
+              : () => {
+                  setRead(read.concat(book));
+                  setBook([]);
+                }
+          }
         >
           Add
         </Button>
@@ -74,9 +93,9 @@ const Main = () => {
       <div className="end">
         <ContentBoxWrapper>
           <Card title="End" style={{ width: 300 }} bordered={false}>
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
+            {end.map((e, key) => (
+              <Typography.Paragraph key={key}>{e}</Typography.Paragraph>
+            ))}
           </Card>
         </ContentBoxWrapper>
       </div>
