@@ -39,7 +39,6 @@ const Main = () => {
   const [book, setBook] = useState([]);
   const [selectValue, setSelectValue] = useState();
   const onChange = e => setBook(e.target.value);
-
   const handleChange = value => {
     setSelectValue(value);
   };
