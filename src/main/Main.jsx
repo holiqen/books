@@ -35,10 +35,8 @@ const ContentBoxWrapper = styled.div`
 
 const Main = () => {
   const [state, setState] = useState([]);
-
-  console.log(state);
-
-  const onChange = value => setState(value);
+  const [book, setBook] = useState([]);
+  const onChange = e => setBook(e.target.value);
 
   return (
     <MainWrapper>
@@ -55,7 +53,7 @@ const Main = () => {
         <Input
           placeholder="Basic usage"
           size="large"
-          value={state}
+          value={book}
           onChange={onChange}
         />
         <Select defaultValue="read" style={{ width: "100%" }} size="large">
@@ -67,8 +65,7 @@ const Main = () => {
           style={{ width: "100%" }}
           size="large"
           onClick={() => {
-            state.push("1");
-            setState(state);
+            setState(state.concat(book));
           }}
         >
           Add
