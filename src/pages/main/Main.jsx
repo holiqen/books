@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Card, Input, Select, Button, Typography } from "antd";
-import { useDispatch } from "react-redux";
-import books from "../../reducers/books";
+// import books from "../../reducers/books";
+import { useDispatch, useSelector } from "react-redux";
+import { addBook } from "../../actions/books";
+// import { addBook } from "../../actions/books";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -39,24 +41,35 @@ const ContentBoxWrapper = styled.div`
 
 const Main = () => {
   const dispatch = useDispatch();
-  const addBooks = (title, listType) => dispatch(books(title, listType));
 
-  const [read, setRead] = useState([]);
-  const [end, setEnd] = useState([]);
+  const books = useSelector((state) => state.books);
+
+  const toggleBook = (title, listType) =>
+    dispatch(
+      addBook({
+        title,
+        listType,
+      }),
+    );
+
+  // const [read, setRead] = useState([]);
+  // const [end, setEnd] = useState([]);
   const [book, setBook] = useState([]);
-  const [selectValue, setSelectValue] = useState();
+  const [listType, setListType] = useState();
   const onChange = (e) => setBook(e.target.value);
   const handleChange = (value) => {
-    setSelectValue(value);
+    setListType(value);
   };
+
+  console.log("kek", books);
 
   return (
     <MainWrapper>
       <div className="read">
         <ContentBoxWrapper>
           <Card title="Read" style={{ width: 300 }} bordered={false}>
-            {read.map((e, key) => (
-              <Typography.Paragraph key={key}>{e}</Typography.Paragraph>
+            {books.map((e, key) => (
+              <Typography.Paragraph key={key.title}>{e}</Typography.Paragraph>
             ))}
           </Card>
         </ContentBoxWrapper>
@@ -82,13 +95,13 @@ const Main = () => {
           style={{ width: "100%" }}
           size="large"
           onClick={
-            selectValue === "end"
+            listType === "end"
               ? () => {
-                  setEnd(end.concat(book));
+                  toggleBook(books, listType);
                   setBook([]);
                 }
               : () => {
-                  setRead(read.concat(book));
+                  toggleBook(books, listType);
                   setBook([]);
                 }
           }
@@ -99,7 +112,7 @@ const Main = () => {
       <div className="end">
         <ContentBoxWrapper>
           <Card title="End" style={{ width: 300 }} bordered={false}>
-            {end.map((e, key) => (
+            {books.map((e, key) => (
               <Typography.Paragraph key={key}>{e}</Typography.Paragraph>
             ))}
           </Card>

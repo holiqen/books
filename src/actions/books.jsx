@@ -1,5 +1,4 @@
-export const addBook = (title, listType) => ({
+export const addBook = (payload) => ({
   type: "ADD_BOOK",
-  listType,
-  title
+  payload,
 });
