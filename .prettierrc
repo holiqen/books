@@ -2,6 +2,7 @@
     "printWidth": 80,
     "tabWidth": 2,
     "singleQuote": false,
-    "trailingComma": "es5",
-    "jsxBracketSameLine": false
+    "trailingComma": "all",
+    "jsxBracketSameLine": false,
+    "arrowParens": "always"
 }

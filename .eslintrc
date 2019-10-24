@@ -16,5 +16,9 @@
     "sourceType": "module"
   },
   "plugins": ["react", "prettier"],
-  "rules": { "semi": ["error", "always"], "quotes": ["error", "double"] }
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "arrow-parens": "error"
+  }
 }
