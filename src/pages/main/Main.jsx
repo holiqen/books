@@ -38,10 +38,8 @@ const ContentBoxWrapper = styled.div`
 `;
 
 const Main = () => {
-  const dispatch = useDispatch();
-
   const books = useSelector((state) => state.books);
-
+  const dispatch = useDispatch();
   const addNewBook = (title, listType) =>
     dispatch(
       addBook({
@@ -49,11 +47,10 @@ const Main = () => {
         listType,
       }),
     );
-
   const [book, setBook] = useState([]);
   const [listType, setListType] = useState("read");
-  const onChange = (e) => setBook(e.target.value);
-  const handleChange = (value) => {
+  const getInputValue = (e) => setBook(e.target.value);
+  const selectType = (value) => {
     setListType(value);
   };
 
@@ -75,13 +72,13 @@ const Main = () => {
           placeholder="Basic usage"
           size="large"
           value={book}
-          onChange={onChange}
+          onChange={getInputValue}
         />
         <Select
           defaultValue="read"
           style={{ width: "100%" }}
           size="large"
-          onChange={handleChange}
+          onChange={selectType}
         >
           <Select.Option value="read">Read</Select.Option>
           <Select.Option value="complete">Complete</Select.Option>
