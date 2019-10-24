@@ -5,8 +5,8 @@ const books = (state = [], action) => {
         ...state,
         {
           title: action.title,
-          listType: action.listType
-        }
+          listType: action.listType,
+        },
       ];
     default:
       return state;
