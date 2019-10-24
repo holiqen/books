@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Card, Input, Select, Button, Typography } from "antd";
-import books from "../../reducers/books";
 import { useDispatch } from "react-redux";
+import books from "../../reducers/books";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -45,8 +45,8 @@ const Main = () => {
   const [end, setEnd] = useState([]);
   const [book, setBook] = useState([]);
   const [selectValue, setSelectValue] = useState();
-  const onChange = e => setBook(e.target.value);
-  const handleChange = value => {
+  const onChange = (e) => setBook(e.target.value);
+  const handleChange = (value) => {
     setSelectValue(value);
   };
 
