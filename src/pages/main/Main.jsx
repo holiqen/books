@@ -62,15 +62,18 @@ const Main = () => {
   };
 
   console.log("kek", books);
+  console.log("lol", listType);
 
   return (
     <MainWrapper>
       <div className="read">
         <ContentBoxWrapper>
           <Card title="Read" style={{ width: 300 }} bordered={false}>
-            {books.map((e, key) => (
-              <Typography.Paragraph key={key.title}>{e}</Typography.Paragraph>
-            ))}
+            {books.map((e, key) =>
+              e.listType === "read" ? (
+                <Typography.Paragraph key={key}>{e.title}</Typography.Paragraph>
+              ) : null,
+            )}
           </Card>
         </ContentBoxWrapper>
       </div>
@@ -97,11 +100,11 @@ const Main = () => {
           onClick={
             listType === "end"
               ? () => {
-                  toggleBook(books, listType);
+                  toggleBook(book, listType);
                   setBook([]);
                 }
               : () => {
-                  toggleBook(books, listType);
+                  toggleBook(book, listType);
                   setBook([]);
                 }
           }
@@ -112,9 +115,11 @@ const Main = () => {
       <div className="end">
         <ContentBoxWrapper>
           <Card title="End" style={{ width: 300 }} bordered={false}>
-            {books.map((e, key) => (
-              <Typography.Paragraph key={key}>{e}</Typography.Paragraph>
-            ))}
+            {books.map((e, key) =>
+              e.listType === "end" ? (
+                <Typography.Paragraph key={key}>{e.title}</Typography.Paragraph>
+              ) : null,
+            )}
           </Card>
         </ContentBoxWrapper>
       </div>
