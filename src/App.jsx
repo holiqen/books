@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import "./App.css";
-import Header from "./header/Header";
-import Main from "./main/Main";
+import Header from "./components/header/Header";
+import Main from "./pages/main/Main";
 
 const MainWrapper = styled.div`
   padding: 0 40px;

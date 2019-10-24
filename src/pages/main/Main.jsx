@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Card, Input, Select, Button, Typography } from "antd";
+import books from "../../reducers/books";
+import { useDispatch } from "react-redux";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -36,6 +38,9 @@ const ContentBoxWrapper = styled.div`
 `;
 
 const Main = () => {
+  const dispatch = useDispatch();
+  const addBooks = (title, listType) => dispatch(books(title, listType));
+
   const [read, setRead] = useState([]);
   const [end, setEnd] = useState([]);
   const [book, setBook] = useState([]);
