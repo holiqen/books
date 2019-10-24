@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Card, Input, Select, Button, Typography } from "antd";
-// import books from "../../reducers/books";
 import { useDispatch, useSelector } from "react-redux";
 import { addBook } from "../../actions/books";
-// import { addBook } from "../../actions/books";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -44,7 +42,7 @@ const Main = () => {
 
   const books = useSelector((state) => state.books);
 
-  const toggleBook = (title, listType) =>
+  const addNewBook = (title, listType) =>
     dispatch(
       addBook({
         title,
@@ -52,17 +50,12 @@ const Main = () => {
       }),
     );
 
-  // const [read, setRead] = useState([]);
-  // const [end, setEnd] = useState([]);
   const [book, setBook] = useState([]);
-  const [listType, setListType] = useState();
+  const [listType, setListType] = useState("read");
   const onChange = (e) => setBook(e.target.value);
   const handleChange = (value) => {
     setListType(value);
   };
-
-  console.log("kek", books);
-  console.log("lol", listType);
 
   return (
     <MainWrapper>
@@ -91,20 +84,20 @@ const Main = () => {
           onChange={handleChange}
         >
           <Select.Option value="read">Read</Select.Option>
-          <Select.Option value="end">End</Select.Option>
+          <Select.Option value="complete">Complete</Select.Option>
         </Select>
         <Button
           type="primary"
           style={{ width: "100%" }}
           size="large"
           onClick={
-            listType === "end"
+            listType === "complete"
               ? () => {
-                  toggleBook(book, listType);
+                  addNewBook(book, listType);
                   setBook([]);
                 }
               : () => {
-                  toggleBook(book, listType);
+                  addNewBook(book, listType);
                   setBook([]);
                 }
           }
@@ -112,11 +105,11 @@ const Main = () => {
           Add
         </Button>
       </div>
-      <div className="end">
+      <div className="complete">
         <ContentBoxWrapper>
-          <Card title="End" style={{ width: 300 }} bordered={false}>
+          <Card title="Complete" style={{ width: 300 }} bordered={false}>
             {books.map((e, key) =>
-              e.listType === "end" ? (
+              e.listType === "complete" ? (
                 <Typography.Paragraph key={key}>{e.title}</Typography.Paragraph>
               ) : null,
             )}
