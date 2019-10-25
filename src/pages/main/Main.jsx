@@ -15,18 +15,17 @@ const Main = () => {
       }),
     );
   // const editBook = (books) => dispatch(editBook({ books }));
-  const [newBook, setNewBook] = useState("");
+  const [book, setBook] = useState([]);
 
-  // const [select, setSelect] = useState();
-  // const selectbl = (book) => setSelect(book.title);
+  const [select, setSelect] = useState();
+  const selectbl = (books) => setSelect(books);
+  const moveBook = () => {};
 
   const [listType, setListType] = useState("read");
-  const setBookFromInput = (e) => setNewBook(e.target.value);
+  const getInputValue = (e) => setBook(e.target.value);
   const selectType = (value) => {
     setListType(value);
   };
-
-  // console.log("KOK", select);
 
   const columnsRead = [
     {
@@ -57,9 +56,15 @@ const Main = () => {
             style={{ width: 300 }}
             columns={columnsRead}
             dataSource={booksRead}
+            rowSelection={selectbl}
           />
         </ContentBoxWrapper>
-        <Button type="primary" style={{ width: "100%" }} size="large">
+        <Button
+          type="primary"
+          style={{ width: "100%" }}
+          size="large"
+          onClick={moveBook}
+        >
           Complete
         </Button>
       </div>
@@ -67,8 +72,8 @@ const Main = () => {
         <Input
           placeholder="Basic usage"
           size="large"
-          value={newBook}
-          onChange={setBookFromInput}
+          value={book}
+          onChange={getInputValue}
         />
         <Select
           defaultValue="read"
@@ -86,12 +91,12 @@ const Main = () => {
           onClick={
             listType === "complete"
               ? () => {
-                  addNewBook(newBook, listType);
-                  setNewBook("");
+                  addNewBook(book, listType);
+                  setBook([]);
                 }
               : () => {
-                  addNewBook(newBook, listType);
-                  setNewBook("");
+                  addNewBook(book, listType);
+                  setBook([]);
                 }
           }
         >
