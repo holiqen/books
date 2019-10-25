@@ -36,8 +36,10 @@ const Main = () => {
     },
   ];
 
-  const booksRead = books.map((e, key) =>
-    e.listType === "read" ? { name: `${e.title}`, key: `${e.title}` } : null,
+  const booksRead = books.map((book, key) =>
+    book.listType === "read"
+      ? { name: book.title, key: `book_${book.listType}_${key}` }
+      : null,
   );
 
   const columnsComplete = [
