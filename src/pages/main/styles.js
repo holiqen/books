@@ -28,6 +28,7 @@ overflow: hidden;
 height: 350px;
 overflow: scroll;
 word-wrap: break-word;
+margin-bottom: 20px;
 &:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
 }

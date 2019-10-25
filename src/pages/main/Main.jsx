@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Input, Select, Button, Typography } from "antd";
+import { Card, Input, Select, Button, Typography, Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { addBook } from "../../actions/books";
 import { MainWrapper, ContentBoxWrapper } from "./styles";
@@ -14,27 +14,52 @@ const Main = () => {
         listType,
       }),
     );
+  // const editBook = (books) => dispatch(editBook({ books }));
   const [book, setBook] = useState([]);
+
+  // const [select, setSelect] = useState();
+  // const selectbl = (book) => setSelect(book.title);
+
   const [listType, setListType] = useState("read");
   const getInputValue = (e) => setBook(e.target.value);
   const selectType = (value) => {
     setListType(value);
   };
 
+  // console.log("KOK", select);
+
+  const columnsRead = [
+    {
+      title: "Read",
+      dataIndex: "name",
+      key: "name",
+    },
+  ];
+
+  const booksRead = books.map((e, key) =>
+    e.listType === "read" ? { name: `${e.title}`, key: `${e.title}` } : null,
+  );
+
+  const columnsComplete = [
+    {
+      title: "Complete",
+      dataIndex: "complete",
+      key: "complete",
+    },
+  ];
   return (
     <MainWrapper>
       <div className="read">
         <ContentBoxWrapper>
-          <Card title="Read" style={{ width: 300 }} bordered={false}>
-            {books.map((e, key) =>
-              e.listType === "read" ? (
-                <Typography.Paragraph key={`book_read_${key}`}>
-                  {e.title}
-                </Typography.Paragraph>
-              ) : null,
-            )}
-          </Card>
+          <Table
+            style={{ width: 300 }}
+            columns={columnsRead}
+            dataSource={booksRead}
+          />
         </ContentBoxWrapper>
+        <Button type="primary" style={{ width: "100%" }} size="large">
+          Complete
+        </Button>
       </div>
       <div className="add">
         <Input
