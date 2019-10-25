@@ -15,13 +15,13 @@ const Main = () => {
       }),
     );
   // const editBook = (books) => dispatch(editBook({ books }));
-  const [book, setBook] = useState([]);
+  const [newBook, setNewBook] = useState("");
 
   // const [select, setSelect] = useState();
   // const selectbl = (book) => setSelect(book.title);
 
   const [listType, setListType] = useState("read");
-  const getInputValue = (e) => setBook(e.target.value);
+  const setBookFromInput = (e) => setNewBook(e.target.value);
   const selectType = (value) => {
     setListType(value);
   };
@@ -67,8 +67,8 @@ const Main = () => {
         <Input
           placeholder="Basic usage"
           size="large"
-          value={book}
-          onChange={getInputValue}
+          value={newBook}
+          onChange={setBookFromInput}
         />
         <Select
           defaultValue="read"
@@ -86,12 +86,12 @@ const Main = () => {
           onClick={
             listType === "complete"
               ? () => {
-                  addNewBook(book, listType);
-                  setBook([]);
+                  addNewBook(newBook, listType);
+                  setNewBook("");
                 }
               : () => {
-                  addNewBook(book, listType);
-                  setBook([]);
+                  addNewBook(newBook, listType);
+                  setNewBook("");
                 }
           }
         >
