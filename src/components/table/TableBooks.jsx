@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { ContentBoxWrapper } from "../../pages/main/styles";
-import { Table, Button } from "antd";
+import { Table } from "antd";
 import { useSelector } from "react-redux";
 
 const TableBooks = ({ listType, title, onBookSelect }) => {
@@ -13,16 +13,13 @@ const TableBooks = ({ listType, title, onBookSelect }) => {
     },
   ];
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState();
-  const rowSelection = (value) => setSelectedRowKeys(value);
-
   return (
     <ContentBoxWrapper>
       <Table
         style={{ width: 300 }}
         columns={columnsTitle}
         dataSource={books.filter((book) => book.listType === listType)}
-        onRowClick={(books) => rowSelection(books)}
+        onRowClick={onBookSelect}
       />
     </ContentBoxWrapper>
   );

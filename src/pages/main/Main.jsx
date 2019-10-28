@@ -19,18 +19,6 @@ const Main = () => {
   const [selectedBook, setSelectedBook] = useState(null);
 
   const setBookFromInput = (e) => setNewBook(e.target.value);
-  const onBookComplete = () => {
-    const destTypeList = "complete";
-
-    if (selectedBook) {
-      console.log(
-        "Selected book with type",
-        selectedBook.listType,
-        "must move to",
-        destTypeList,
-      );
-    }
-  };
 
   return (
     <MainWrapper>
@@ -44,7 +32,11 @@ const Main = () => {
           type="primary"
           style={{ width: "100%" }}
           size="large"
-          onClick={onBookComplete}
+          disabled={!selectedBook}
+          onClick={() => {
+            selectedBook.listType = "complete";
+            setSelectedBook(null);
+          }}
         >
           Complete
         </Button>
@@ -69,6 +61,7 @@ const Main = () => {
           type="primary"
           style={{ width: "100%" }}
           size="large"
+          disabled={newBook === ""}
           onClick={() => {
             addNewBook(newBook, listType);
             setNewBook("");
