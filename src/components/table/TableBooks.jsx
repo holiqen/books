@@ -15,26 +15,15 @@ const TableBooks = ({ listType, title, onBookSelect }) => {
 
   const [selectedRowKeys, setSelectedRowKeys] = useState();
   const rowSelection = (value) => setSelectedRowKeys(value);
-  const dataRead = books.filter((book, key) => book.listType === "read");
-  const dataComp = books.filter((book, key) => book.listType === "complete");
 
-  console.log("kek", selectedRowKeys);
   return (
     <ContentBoxWrapper>
       <Table
         style={{ width: 300 }}
         columns={columnsTitle}
-        dataSource={listType === "read" ? dataRead : dataComp}
+        dataSource={books.filter((book) => book.listType === listType)}
         onRowClick={(books) => rowSelection(books)}
       />
-      <Button
-        type="primary"
-        style={{ width: "100%" }}
-        size="large"
-        onClick={(selectedRowKeys) => selectedRowKeys}
-      >
-        Complete
-      </Button>
     </ContentBoxWrapper>
   );
 };
