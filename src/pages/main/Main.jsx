@@ -22,15 +22,21 @@ const Main = () => {
     setListType(value);
   };
 
+  // const [selectedRowKeys, setSelectedRowKeys] = useState();
+
   return (
     <MainWrapper>
       <div className="read">
-        <TableBooks listType="read" title="Read" />
+        <TableBooks
+          listType="read"
+          title="Read"
+          onBookSelect={(book) => book}
+        />
         <Button
           type="primary"
           style={{ width: "100%" }}
           size="large"
-          // onClick={}
+          onClick={(selectedRowKeys) => selectedRowKeys}
         >
           Complete
         </Button>
