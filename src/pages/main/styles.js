@@ -5,6 +5,15 @@ display: flex;
 align-items: center;
 justify-content: center;
 margin-top: 200px;
+.ant-table-placeholder {
+  display: none;
+}
+.ant-table-tbody {
+  text-align: center;
+}
+.ant-pagination {
+  display: none;
+}
 .add {
   margin: 0 30px;
   height: 200px;
