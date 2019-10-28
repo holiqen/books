@@ -18,10 +18,7 @@ const Main = () => {
 
   const [listType, setListType] = useState("read");
   const setBookFromInput = (e) => setNewBook(e.target.value);
-  const selectType = (value) => {
-    setListType(value);
-  };
-
+  // const selectType = (value) => setListType(value);
   // const [selectedRowKeys, setSelectedRowKeys] = useState();
 
   return (
@@ -52,7 +49,7 @@ const Main = () => {
           defaultValue="read"
           style={{ width: "100%" }}
           size="large"
-          onChange={selectType}
+          onChange={setListType}
         >
           <Select.Option value="read">Read</Select.Option>
           <Select.Option value="complete">Complete</Select.Option>
@@ -61,17 +58,10 @@ const Main = () => {
           type="primary"
           style={{ width: "100%" }}
           size="large"
-          onClick={
-            listType === "complete"
-              ? () => {
-                  addNewBook(newBook, listType);
-                  setNewBook("");
-                }
-              : () => {
-                  addNewBook(newBook, listType);
-                  setNewBook("");
-                }
-          }
+          onClick={() => {
+            addNewBook(newBook, listType);
+            setNewBook("");
+          }}
         >
           Add
         </Button>
