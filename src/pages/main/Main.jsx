@@ -15,11 +15,22 @@ const Main = () => {
       }),
     );
   const [newBook, setNewBook] = useState("");
-
   const [listType, setListType] = useState("read");
+  const [selectedBook, setSelectedBook] = useState(null);
+
   const setBookFromInput = (e) => setNewBook(e.target.value);
-  // const selectType = (value) => setListType(value);
-  // const [selectedRowKeys, setSelectedRowKeys] = useState();
+  const onBookComplete = () => {
+    const destTypeList = "complete";
+
+    if (selectedBook) {
+      console.log(
+        "Selected book with type",
+        selectedBook.listType,
+        "must move to",
+        destTypeList,
+      );
+    }
+  };
 
   return (
     <MainWrapper>
@@ -27,13 +38,13 @@ const Main = () => {
         <TableBooks
           listType="read"
           title="Read"
-          onBookSelect={(book) => book}
+          onBookSelect={setSelectedBook}
         />
         <Button
           type="primary"
           style={{ width: "100%" }}
           size="large"
-          onClick={(selectedRowKeys) => selectedRowKeys}
+          onClick={onBookComplete}
         >
           Complete
         </Button>
