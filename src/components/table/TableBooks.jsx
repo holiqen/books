@@ -1,7 +1,8 @@
 import React from "react";
-import { ContentBoxWrapper } from "../../pages/main/styles";
-import { Table } from "antd";
 import { useSelector } from "react-redux";
+import { Table } from "antd";
+import PropTypes from "prop-types";
+import { ContentBoxWrapper } from "../../pages/main/styles";
 
 const TableBooks = ({ listType, title, onBookSelect }) => {
   const books = useSelector((state) => state.books);
@@ -19,10 +20,20 @@ const TableBooks = ({ listType, title, onBookSelect }) => {
         style={{ width: 300 }}
         columns={columnsTitle}
         dataSource={books.filter((book) => book.listType === listType)}
-        onRowClick={onBookSelect}
+        onRow={() => {
+          return {
+            onClick: onBookSelect,
+          };
+        }}
       />
     </ContentBoxWrapper>
   );
+};
+
+TableBooks.propTypes = {
+  listType: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  onBookSelect: PropTypes.func.isRequired,
 };
 
 export default TableBooks;

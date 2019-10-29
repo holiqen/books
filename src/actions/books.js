@@ -9,7 +9,7 @@ export const addBook = (bookData) => ({
     payload: bookData,
 });
 
-export const editBook = (bookTitle) => ({
-    type: "EDIT_BOOK",
-    payload: bookTitle
+export const transferBook = (bookData) => ({
+    type: "TRANSFER_BOOK",
+    payload: bookData
 });
