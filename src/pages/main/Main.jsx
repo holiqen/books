@@ -36,7 +36,7 @@ const Main = () => {
           size="large"
           disabled={!selectedBook}
           onClick={() => {
-            changeListType(selectedBook, "complete");
+            changeListType(selectedBook.title, "complete");
             setSelectedBook();
           }}
         >
