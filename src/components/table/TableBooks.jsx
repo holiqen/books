@@ -20,10 +20,14 @@ const TableBooks = ({ listType, title, onBookSelect }) => {
         style={{ width: 300 }}
         columns={columnsTitle}
         dataSource={books.filter((book) => book.listType === listType)}
-        // onRow={() => ({
-        //   onClick: onBookSelect,
-        // })}
-        onRowClick={onBookSelect}
+        onRow={(rowIndex) => {
+          return {
+            onClick: () => {
+              onBookSelect(rowIndex);
+            },
+          };
+        }}
+        // onRowClick={onBookSelect}
       />
     </ContentBoxWrapper>
   );

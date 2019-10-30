@@ -22,6 +22,8 @@ const Main = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const setBookFromInput = (e) => setNewBook(e.target.value);
 
+  console.log("selectedBook", selectedBook);
+
   return (
     <MainWrapper>
       <div className="read">
@@ -34,7 +36,7 @@ const Main = () => {
           type="primary"
           style={{ width: "100%" }}
           size="large"
-          disabled={!selectedBook}
+          disabled={!selectedBook || selectedBook.listType === "complete"}
           onClick={() => {
             changeListType(selectedBook.title, "complete");
             setSelectedBook();
@@ -73,7 +75,11 @@ const Main = () => {
         </Button>
       </div>
       <div className="complete">
-        <TableBooks listType="complete" title="Complete" />
+        <TableBooks
+          listType="complete"
+          title="Complete"
+          onBookSelect={setSelectedBook}
+        />
       </div>
     </MainWrapper>
   );
