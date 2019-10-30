@@ -9,6 +9,8 @@ const books = (state = [], action) => {
                 }
                 return item;
             });
+        case "DELET_BOOK":
+            return state.filter((item) => (item.title !== action.payload.title));
         default:
             return state;
     }

@@ -14,6 +14,7 @@ const TableBooks = ({ listType, title, onBookSelect }) => {
     },
   ];
 
+  console.log("books", books);
   return (
     <ContentBoxWrapper>
       <Table

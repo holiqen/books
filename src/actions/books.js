@@ -13,3 +13,8 @@ export const transferBook = (bookData) => ({
     type: "TRANSFER_BOOK",
     payload: bookData
 });
+
+export const deletBook = (bookData) => ({
+    type: "DELET_BOOK",
+    payload: bookData
+});

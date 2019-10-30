@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input, Select, Button } from "antd";
 import { useDispatch } from "react-redux";
-import { addBook, transferBook } from "../../actions/books";
+import { addBook, transferBook, deletBook } from "../../actions/books";
 import { MainWrapper } from "./styles";
 import TableBooks from "../../components/table/TableBooks";
 
@@ -17,6 +17,8 @@ const Main = () => {
 
   const changeListType = (title, listType) =>
     dispatch(transferBook({ title, listType }));
+
+  const deletBooks = (title) => dispatch(deletBook({ title }));
   const [newBook, setNewBook] = useState("");
   const [listType, setListType] = useState("read");
   const [selectedBook, setSelectedBook] = useState(null);
@@ -72,6 +74,18 @@ const Main = () => {
           }}
         >
           Add
+        </Button>
+        <Button
+          type="primary"
+          style={{ width: "100%" }}
+          size="large"
+          disabled={!selectedBook}
+          onClick={() => {
+            deletBooks(selectedBook.title);
+            setSelectedBook();
+          }}
+        >
+          Delet
         </Button>
       </div>
       <div className="complete">
