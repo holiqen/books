@@ -15,6 +15,6 @@ export const transferBook = (bookData) => ({
 });
 
 export const deletBook = (bookData) => ({
-    type: "DELET_BOOK",
+    type: "DELETE_BOOK",
     payload: bookData
 });

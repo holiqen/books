@@ -18,7 +18,7 @@ const Main = () => {
   const changeListType = (title, listType) =>
     dispatch(transferBook({ title, listType }));
 
-  const deletBooks = (title) => dispatch(deletBook({ title }));
+  const deleteBooks = (title) => dispatch(deletBook({ title }));
   const [newBook, setNewBook] = useState("");
   const [listType, setListType] = useState("read");
   const [selectedBook, setSelectedBook] = useState(null);
@@ -81,11 +81,11 @@ const Main = () => {
           size="large"
           disabled={!selectedBook}
           onClick={() => {
-            deletBooks(selectedBook.title);
+            deleteBooks(selectedBook.title);
             setSelectedBook();
           }}
         >
-          Delet
+          Delete
         </Button>
       </div>
       <div className="complete">
