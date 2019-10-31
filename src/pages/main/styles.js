@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const MainWrapper = styled.div `
-display: flex;
+/* display: flex;
 align-items: center;
 justify-content: center;
-margin-top: 200px;
+flex-direction: column; */
+/* margin-top: 200px; */
 .ant-table-placeholder {
   display: none;
 }
@@ -22,8 +23,6 @@ margin-top: 200px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  .ant-input {
-  }
 }
 `;
 
@@ -41,4 +40,24 @@ margin-bottom: 20px;
 &:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
 }
+.ant-table-thead > tr > th {
+  background-color: white;
+  font-size: 18px;
+}
+.ant-table-tbody > tr > td {
+  border: none;
+}
+.ant-table-tbody > tr > td:hover {
+  background-color: #000;
+}
+`;
+
+export const AppWrapper = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  background-color: #efebe9;
+  height: 100vh;
+  padding-top: 10px;
 `;

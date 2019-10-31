@@ -1,24 +1,24 @@
 import React from "react";
-import styled from "styled-components";
-import "./App.css";
-import Header from "./components/header/Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Registration from "./pages/registration/Registration";
+import Authorization from "./pages/authorization/Authorization";
 import Main from "./pages/main/Main";
-
-const MainWrapper = styled.div`
-  padding: 0 40px;
-  background-color: #efebe9;
-  height: 100vh;
-  padding-top: 10px;
-`;
 
 const App = () => {
   return (
-    <MainWrapper>
-      <div className="App">
-        <Header />
-        <Main />
-      </div>
-    </MainWrapper>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route path="/registration">
+          <Registration />
+        </Route>
+        <Route path="/authorization">
+          <Authorization />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 

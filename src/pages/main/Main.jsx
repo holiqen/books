@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addBook, transferBook, deletBook } from "../../actions/books";
 import { MainWrapper } from "./styles";
 import TableBooks from "../../components/table/TableBooks";
+import Header from "../../components/header/Header";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -28,72 +29,79 @@ const Main = () => {
 
   return (
     <MainWrapper>
-      <div className="read">
-        <TableBooks
-          listType="read"
-          title="Read"
-          onBookSelect={setSelectedBook}
-        />
-        <Button
-          type="primary"
-          style={{ width: "100%" }}
-          size="large"
-          disabled={!selectedBook || selectedBook.listType === "complete"}
-          onClick={() => {
-            changeListType(selectedBook.title, "complete");
-            setSelectedBook();
-          }}
-        >
-          Complete
-        </Button>
+      <div style={{ position: "absolute", top: "10px" }}>
+        <Header />
       </div>
-      <div className="add">
-        <Input
-          placeholder="Basic usage"
-          size="large"
-          value={newBook}
-          onChange={setBookFromInput}
-        />
-        <Select
-          defaultValue="read"
-          style={{ width: "100%" }}
-          size="large"
-          onChange={setListType}
-        >
-          <Select.Option value="read">Read</Select.Option>
-          <Select.Option value="complete">Complete</Select.Option>
-        </Select>
-        <Button
-          type="primary"
-          style={{ width: "100%" }}
-          size="large"
-          disabled={newBook === ""}
-          onClick={() => {
-            addNewBook(newBook, listType);
-            setNewBook("");
-          }}
-        >
-          Add
-        </Button>
-        <Button
-          type="primary"
-          style={{ width: "100%" }}
-          size="large"
-          disabled={!selectedBook}
-          onClick={() => {
-            deleteBooks(selectedBook.title);
-            setSelectedBook();
-          }}
-        >
-          Delete
-        </Button>
-      </div>
-      <div className="complete">
-        <TableBooks
-          listType="complete"
-          title="Complete"
-          onBookSelect={setSelectedBook}
-        />
+      <div
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+      >
+        <div className="read">
+          <TableBooks
+            listType="read"
+            title="Read"
+            onBookSelect={setSelectedBook}
+          />
+          <Button
+            type="primary"
+            style={{ width: "100%" }}
+            size="large"
+            disabled={!selectedBook || selectedBook.listType === "complete"}
+            onClick={() => {
+              changeListType(selectedBook.title, "complete");
+              setSelectedBook(null);
+            }}
+          >
+            Complete
+          </Button>
+        </div>
+        <div className="add">
+          <Input
+            placeholder="Basic usage"
+            size="large"
+            value={newBook}
+            onChange={setBookFromInput}
+          />
+          <Select
+            defaultValue="read"
+            style={{ width: "100%" }}
+            size="large"
+            onChange={setListType}
+          >
+            <Select.Option value="read">Read</Select.Option>
+            <Select.Option value="complete">Complete</Select.Option>
+          </Select>
+          <Button
+            type="primary"
+            style={{ width: "100%" }}
+            size="large"
+            disabled={newBook === ""}
+            onClick={() => {
+              addNewBook(newBook, listType);
+              setNewBook("");
+            }}
+          >
+            Add
+          </Button>
+          <Button
+            type="primary"
+            style={{ width: "100%" }}
+            size="large"
+            disabled={!selectedBook}
+            onClick={() => {
+              deleteBooks(selectedBook.title);
+              setSelectedBook(null);
+            }}
+          >
+            Delete
+          </Button>
+        </div>
+        <div className="complete">
+          <TableBooks
+            listType="complete"
+            title="Complete"
+            onBookSelect={setSelectedBook}
+          />
+        </div>
       </div>
     </MainWrapper>
   );
