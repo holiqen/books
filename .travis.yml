@@ -1,2 +1,2 @@
 language: react
-script: npx eslint
+script: npx eslint .
