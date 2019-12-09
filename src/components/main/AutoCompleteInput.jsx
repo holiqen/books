@@ -1,58 +1,56 @@
 import React, { useState } from "react";
 import { AutoComplete } from "antd";
-import { useDispatch } from "react-redux";
 
-const AutoCompleteInput = ({ value, onChange }: any) => {
-  const dispatch = useDispatch();
-  const [dataSource, setdataSource] = useState([]);
-  const onSearch = (searchText) => {
-    setdataSource(
-      !searchText
-        ? []
-        : [searchText, searchText.repeat(2), searchText.repeat(3)],
-    );
-  };
+// ---- Это лучше выделить в сервис
+import books from "google-books-search";
 
-  var books = require("google-books-search");
+const options = {
+  key: "AIzaSyCKczu1YY3wt7QOG6toy4fWCZxwHr7tUT0",
+  field: "title",
+  offset: 0,
+  limit: 20,
+  type: "books",
+  order: "relevance",
+  lang: "en",
+};
 
-  var options = {
-    key: "AIzaSyCKczu1YY3wt7QOG6toy4fWCZxwHr7tUT0",
-    field: "title",
-    offset: 0,
-    limit: 20,
-    type: "books",
-    order: "relevance",
-    lang: "en",
-  };
-
-  books.search(value, options, function(error, results, apiResponse) {
-    if (!error) {
-      results.map((item) => booksResult.push(item.title));
-    } else {
-      console.log(error);
-    }
+/**
+ * Поиск книг по заголовку
+ * @param {String} title
+ * @returns {Promise<Array<String>>}
+ */
+const searchBook = (title) =>
+  new Promise((resolve, reject) => {
+    books.search(title, options, (error, results, apiResponse) => {
+      if (!error) {
+        resolve(results.map((item) => item.title));
+      } else {
+        reject(error);
+      }
+    });
   });
+// -----------------------------------------
 
-  const booksResult = [];
+// Папка компонента у тебя main, хотя должна нести название самого компонента
+// Название компонента слишком абстрактное, нужно что-то типа SearchBookInput
+// В идеале после выноса сервиса прописать его как пропс и передавать, хотя можно пока и без этого
+const AutoCompleteInput = ({ onSelect }) => {
+  const minChars = 3;
+  const [dataSource, setDataSource] = useState([]);
+  const onSearch = (searchText) => {
+    if (searchText && searchText.length > minChars) {
+      searchBook(searchText).then(setDataSource);
+    }
+  };
 
-  // const opsList = booksResult.map(function(e, i) {
-  //   return (
-  //     <Option value={e} key={i}>
-  //       {" "}
-  //       {i}{" "}
-  //     </Option>
-  //   );
-  // });
   return (
     <div>
       <AutoComplete
-        // dataSource={dataSource}
+        dataSource={dataSource}
         style={{ width: 200 }}
-        // onSelect={onSelect}
-        // onSearch={onSearch}
+        onSelect={onSelect}
+        onSearch={onSearch}
         placeholder="input here"
-        value={value}
-        onChange={onChange}
       />
     </div>
   );

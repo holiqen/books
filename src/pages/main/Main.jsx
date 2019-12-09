@@ -28,27 +28,6 @@ const Main = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const setBookFromInput = (e) => setNewBook(e.target.value);
 
-  // var books = require("google-books-search");
-
-  // var options = {
-  //   key: "AIzaSyCKczu1YY3wt7QOG6toy4fWCZxwHr7tUT0",
-  //   field: "title",
-  //   offset: 0,
-  //   limit: 20,
-  //   type: "books",
-  //   order: "relevance",
-  //   lang: "en",
-  // };
-
-  // books.search(newBook, options, function(error, results, apiResponse) {
-  //   if (!error) {
-  //     results.map((item) => booksResult.push(item.title));
-  //   } else {
-  //     console.log(error);
-  //   }
-  // });
-
-  // const booksResult = [];
   return (
     <MainWrapper>
       <div style={{ position: "absolute", top: "10px" }}>
@@ -83,7 +62,7 @@ const Main = () => {
             value={newBook}
             onChange={setBookFromInput}
           /> */}
-          <AutoCompleteInput value={newBook} onChange={setBookFromInput} />
+          <AutoCompleteInput onSelect={console.log} />
           {/* <Select
             defaultValue="read"
             style={{ width: "100%" }}
