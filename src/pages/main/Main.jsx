@@ -5,8 +5,9 @@ import { addBook, transferBook, deletBook } from "../../actions/books";
 import { MainWrapper } from "./styles";
 import TableBooks from "../../components/table/TableBooks";
 import Header from "../../components/header/Header";
+import AutoCompleteInput from "../../components/main/AutoCompleteInput";
 
-const Option = AutoComplete.Option;
+// const Option = AutoComplete.Option;
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -27,45 +28,27 @@ const Main = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const setBookFromInput = (e) => setNewBook(e.target.value);
 
-  var books = require("google-books-search");
+  // var books = require("google-books-search");
 
-  var options = {
-    key: "AIzaSyCKczu1YY3wt7QOG6toy4fWCZxwHr7tUT0",
-    field: "title",
-    offset: 0,
-    limit: 20,
-    type: "books",
-    order: "relevance",
-    lang: "en",
-  };
+  // var options = {
+  //   key: "AIzaSyCKczu1YY3wt7QOG6toy4fWCZxwHr7tUT0",
+  //   field: "title",
+  //   offset: 0,
+  //   limit: 20,
+  //   type: "books",
+  //   order: "relevance",
+  //   lang: "en",
+  // };
 
-  books.search(newBook, options, function(error, results, apiResponse) {
-    if (!error) {
-      results.map((item) => booksResult.push(item.title));
-    } else {
-      console.log(error);
-    }
-  });
+  // books.search(newBook, options, function(error, results, apiResponse) {
+  //   if (!error) {
+  //     results.map((item) => booksResult.push(item.title));
+  //   } else {
+  //     console.log(error);
+  //   }
+  // });
 
-  const booksResult = [];
-  console.log("booksResult", booksResult);
-
-  const onSearchBooks = (searchText) =>
-    booksResult.includes(!searchText) ? [] : [searchText];
-
-  const opsList = booksResult.map(function(e, i) {
-    return (
-      <Option value={e} key={i}>
-        {" "}
-        {i}{" "}
-      </Option>
-    );
-  });
-
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-  }
-
+  // const booksResult = [];
   return (
     <MainWrapper>
       <div style={{ position: "absolute", top: "10px" }}>
@@ -94,21 +77,13 @@ const Main = () => {
           </Button>
         </div>
         <div className="add">
-          <Input
+          {/* <Input
             placeholder="Basic usage"
             size="large"
             value={newBook}
             onChange={setBookFromInput}
-          />
-          <AutoComplete
-            // dataSource={booksResult}
-            onChange={handleChange}
-            style={{ width: 200 }}
-            // onSearch={onSearchBooks}
-            placeholder="input here"
-          >
-            {opsList}
-          </AutoComplete>
+          /> */}
+          <AutoCompleteInput value={newBook} onChange={setBookFromInput} />
           {/* <Select
             defaultValue="read"
             style={{ width: "100%" }}
