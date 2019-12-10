@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AutoComplete } from "antd";
-
-// ---- Это лучше выделить в сервис
+import PropTypes from "prop-types";
 import books from "google-books-search";
 
 const options = {
@@ -21,7 +20,7 @@ const options = {
  */
 const searchBook = (title) =>
   new Promise((resolve, reject) => {
-    books.search(title, options, (error, results, apiResponse) => {
+    books.search(title, options, (error, results) => {
       if (!error) {
         resolve(results.map((item) => item.title));
       } else {
@@ -29,11 +28,7 @@ const searchBook = (title) =>
       }
     });
   });
-// -----------------------------------------
 
-// Папка компонента у тебя main, хотя должна нести название самого компонента
-// Название компонента слишком абстрактное, нужно что-то типа SearchBookInput
-// В идеале после выноса сервиса прописать его как пропс и передавать, хотя можно пока и без этого
 const SearchBookInput = ({ onSelect }) => {
   const minChars = 3;
   const [dataSource, setDataSource] = useState([]);
@@ -54,6 +49,10 @@ const SearchBookInput = ({ onSelect }) => {
       />
     </div>
   );
+};
+
+SearchBookInput.propTypes = {
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default SearchBookInput;

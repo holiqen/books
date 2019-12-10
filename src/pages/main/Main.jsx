@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Input, Select, Button, AutoComplete } from "antd";
+import { Select, Button } from "antd";
 import { useDispatch } from "react-redux";
 import { addBook, transferBook, deletBook } from "../../actions/books";
 import { MainWrapper } from "./styles";
 import TableBooks from "../../components/table/TableBooks";
 import Header from "../../components/header/Header";
-import SearchBookInput from "../../components/main/SearchBookInput";
-
-// const Option = AutoComplete.Option;
+import SearchBookInput from "../../components/search/SearchBookInput";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -26,7 +24,6 @@ const Main = () => {
   const [newBook, setNewBook] = useState("");
   const [listType, setListType] = useState("read");
   const [selectedBook, setSelectedBook] = useState(null);
-  const setBookFromInput = (e) => setNewBook(e.target.value);
 
   return (
     <MainWrapper>
@@ -56,12 +53,6 @@ const Main = () => {
           </Button>
         </div>
         <div className="add">
-          {/* <Input
-            placeholder="Basic usage"
-            size="large"
-            value={newBook}
-            onChange={setBookFromInput}
-          /> */}
           <SearchBookInput onSelect={setNewBook} />
           <Select
             defaultValue="read"
