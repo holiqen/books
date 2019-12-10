@@ -5,7 +5,7 @@ import { addBook, transferBook, deletBook } from "../../actions/books";
 import { MainWrapper } from "./styles";
 import TableBooks from "../../components/table/TableBooks";
 import Header from "../../components/header/Header";
-import AutoCompleteInput from "../../components/main/AutoCompleteInput";
+import SearchBookInput from "../../components/main/SearchBookInput";
 
 // const Option = AutoComplete.Option;
 
@@ -62,8 +62,8 @@ const Main = () => {
             value={newBook}
             onChange={setBookFromInput}
           /> */}
-          <AutoCompleteInput onSelect={console.log} />
-          {/* <Select
+          <SearchBookInput onSelect={setNewBook} />
+          <Select
             defaultValue="read"
             style={{ width: "100%" }}
             size="large"
@@ -95,7 +95,7 @@ const Main = () => {
             }}
           >
             Delete
-          </Button> */}
+          </Button>
         </div>
         <div className="complete">
           <TableBooks

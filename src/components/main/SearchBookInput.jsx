@@ -34,7 +34,7 @@ const searchBook = (title) =>
 // Папка компонента у тебя main, хотя должна нести название самого компонента
 // Название компонента слишком абстрактное, нужно что-то типа SearchBookInput
 // В идеале после выноса сервиса прописать его как пропс и передавать, хотя можно пока и без этого
-const AutoCompleteInput = ({ onSelect }) => {
+const SearchBookInput = ({ onSelect }) => {
   const minChars = 3;
   const [dataSource, setDataSource] = useState([]);
   const onSearch = (searchText) => {
@@ -56,4 +56,4 @@ const AutoCompleteInput = ({ onSelect }) => {
   );
 };
 
-export default AutoCompleteInput;
+export default SearchBookInput;
