@@ -28,7 +28,7 @@ const Main = () => {
   return (
     <MainWrapper>
       <div style={{ position: "absolute", top: "10px" }}>
-        <Header />
+        <Header/>
       </div>
       <div
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
@@ -53,7 +53,7 @@ const Main = () => {
           </Button>
         </div>
         <div className="add">
-          <SearchBookInput onSelect={setNewBook} />
+          <SearchBookInput onSelect={setNewBook}/>
           <Select
             defaultValue="read"
             style={{ width: "100%" }}

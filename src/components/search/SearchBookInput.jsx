@@ -41,6 +41,7 @@ const SearchBookInput = ({ onSelect }) => {
   return (
     <div>
       <AutoComplete
+        autoFocus
         dataSource={dataSource}
         style={{ width: 200 }}
         onSelect={onSelect}

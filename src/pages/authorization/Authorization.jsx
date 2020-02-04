@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Button, Icon } from "antd";
-import "../../App.css";
+
 import { AuthorizationWrapper } from "./styles";
 
 const Authorization = () => {
@@ -23,7 +23,7 @@ const Authorization = () => {
           render={({ errors, touched }) => (
             <Form>
               <div className="logo">
-                <Icon type="book" style={{ fontSize: "36px" }} />
+                <Icon type="book" style={{ fontSize: "36px" }}/>
               </div>
               <div className="input_box">
                 <div className="form-group">

@@ -1,24 +1,24 @@
 import React from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { Provider } from "react-redux";
 import rootReducer from "./reducers";
-import { createStore } from "redux";
-import { AppWrapper } from "./pages/main/styles";
+// import { AppWrapper } from "./pages/main/styles";
+import Globals from "./components/globals/Globals";
 
 const store = createStore(rootReducer);
 
 ReactDOM.render(
-  <div className="App">
-    <AppWrapper>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </AppWrapper>
+  <div>
+    {/* <AppWrapper> */}
+    <Provider store={store}>
+      <Globals />
+      <App />
+    </Provider>
+    {/* </AppWrapper> */}
   </div>,
-
   document.getElementById("root"),
 );
 

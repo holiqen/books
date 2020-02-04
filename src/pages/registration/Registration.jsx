@@ -2,7 +2,6 @@ import React from "react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Icon, Avatar } from "antd";
-import "../../App.css";
 import { RegistrationWrapper } from "./styles";
 
 const Registration = () => {
@@ -26,7 +25,7 @@ const Registration = () => {
           render={({ errors, touched }) => (
             <Form>
               <div className="logo">
-                <Icon type="book" style={{ fontSize: "36px" }} />
+                <Icon type="book" style={{ fontSize: "36px" }}/>
               </div>
               <div className="input_avatar">
                 <div className="input_box">
@@ -82,7 +81,7 @@ const Registration = () => {
                   </div>
                 </div>
                 <div className="avatar_box">
-                  <Avatar size={128} icon="user" />
+                  <Avatar size={128} icon="user"/>
                 </div>
               </div>
               <div>
